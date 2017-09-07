@@ -1,0 +1,132 @@
+library std;
+use std.standard.all;
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+package components is
+
+component datapath is
+port(clk,reset: in std_logic; 
+--register control signals
+	opcode_alu,A1_op,demux_op,T4_op,D3_op,alu_b_op:in std_logic_vector(1 downto 0);
+	T2_op,A3_op:in std_logic_vector(2 downto 0);
+	alu_a_op,ze_en,carry_en,T1_en, T2_en,T3_en, T4_en,T5_en,ir_en,T1_op,T3_op,A2_op,MemWrite,registerWrite, mem_add_op, mem_data_op :in std_logic;
+	rout_0,rout_1,rout_2,rout_3,rout_4,rout_5,rout_6,rout_7: out std_logic_vector(15 downto 0);
+	pe_flag,carry,zero: out std_logic;
+	instruction:out std_logic_vector(15 downto 0));
+end component;
+
+component FSM is
+port (
+	clk,reset: in std_logic;
+	opcode_alu,A1_op,demux_op,T4_op,D3_op,alu_b_op:out std_logic_vector(1 downto 0);
+	T2_op,A3_op:out std_logic_vector(2 downto 0);
+	alu_a_op,T1_en, T2_en,T3_en, T4_en,T5_en,ir_en,T1_op,T3_op,A2_op,MemWrite,registerWrite, mem_add_op, mem_data_op :out std_logic;
+	pe_flag,carry,zero: in std_logic;
+
+	instruction:in std_logic_vector(15 downto 0));
+end component;
+
+component FullA is
+port ( 
+   a , b ,c: in std_logic;
+   s,co : out std_logic);
+end component;
+
+component SixteenBitAdder is
+port ( 
+   X , Y : in std_logic_vector(15 downto 0);
+   S : out std_logic_vector(15 downto 0);
+   carryflag : out std_logic);
+end component;
+
+type arr is array(0 to 65535) of std_logic_vector(15 downto 0);
+component Memoryn  is
+    port (
+	
+        Address:   in std_logic_vector(15 downto 0);
+        DataWrite: in std_logic_vector(15 downto 0);
+        --registers : inout arr;
+	DataRead:  out std_logic_vector(15 downto 0);
+	clk: in std_logic;
+        Mem_Write : in std_logic);
+end component;
+
+component ALU is
+port (
+   I1,I2: in std_logic_vector(15 downto 0);
+   op:in std_logic_vector(1 downto 0);
+  Ou: out std_logic_vector(15 downto 0);
+  zeroflag,carryflag:out std_logic);
+end component;
+
+component comparator is
+port ( 
+   X , Y : in std_logic_vector(15 downto 0);
+   S: out std_logic_vector(15 downto 0));
+ end component;
+
+component LeftS_7 is
+port ( 
+   X : in std_logic_vector(8 downto 0);
+   S : out std_logic_vector(15 downto 0));
+ end component;
+
+component PriorityEnc is
+port ( 
+   X : in std_logic_vector(7 downto 0);
+   S : out std_logic_vector(2 downto 0));
+ end component;
+
+component SignEx_9 is
+port ( 
+   X : in std_logic_vector(8 downto 0);
+   S : out std_logic_vector(15 downto 0));
+ end component;
+
+component SignEx_6 is
+port ( 
+   X : in std_logic_vector(5 downto 0);
+   S : out std_logic_vector(15 downto 0));
+ end component;
+
+component nandgate is
+port ( 
+   X , Y : in std_logic_vector(15 downto 0);
+   S : out std_logic_vector(15 downto 0));
+end component;
+
+component xorgate is
+port ( 
+   X , Y : in std_logic_vector(15 downto 0);
+   S : out std_logic_vector(15 downto 0));
+end component;
+
+component decoder is
+   port (X: in std_logic_vector(2 downto 0);
+	 S: out std_logic_vector(7 downto 0));
+end component;
+
+component DataRegister is
+	generic (data_width:integer);
+	port (Din: in std_logic_vector(data_width-1 downto 0);
+	      Dout: out std_logic_vector(data_width-1 downto 0);
+	      clk, enable: in std_logic);
+end component;
+
+component registerfile is
+port ( 
+	A1  : in  std_logic_vector(2 downto 0);
+        A2  : in  std_logic_vector(2 downto 0);
+        A3  : in  std_logic_vector(2 downto 0);
+        D3  : in  std_logic_vector(15 downto 0);
+        D1  : out std_logic_vector(15 downto 0);
+        D2  : out std_logic_vector(15 downto 0);
+	rout_0,rout_1,rout_2,rout_3,rout_4,rout_5,rout_6,rout_7: out std_logic_vector(15 downto 0);
+        registerWrite : in std_logic;
+        clk,reset : in std_logic);
+end component;
+
+
+end package;

@@ -1,0 +1,66 @@
+v 3
+file . "Testbench.vhd" "20161030112345.000" "20161102164824.865":
+  entity testbenchadd at 1( 0) + 0 on 4337;
+  architecture behave of testbenchadd at 10( 156) + 0 on 4338;
+file . "Testbenchreg.vhd" "20161030152718.000" "20161102164824.812":
+  entity testbenchreg at 1( 0) + 0 on 4335;
+  architecture behave of testbenchreg at 12( 141) + 0 on 4336;
+file . "TopLevel.vhd" "20161030214525.000" "20161102164824.899":
+  entity toplevel at 1( 0) + 0 on 4339;
+  architecture behave of toplevel at 11( 242) + 0 on 4340;
+file . "Memoryn.vhd" "20161031103402.000" "20161102164824.407":
+  entity memoryn at 1( 0) + 0 on 4315;
+  architecture behavioral of memoryn at 14( 326) + 0 on 4316;
+file . "xorgate.vhd" "20161019160421.000" "20161102164824.935":
+  entity xorgate at 1( 0) + 0 on 4341;
+  architecture formula of xorgate at 13( 211) + 0 on 4342;
+file . "SignEx_9.vhd" "20161020122914.000" "20161102164824.697":
+  entity signex_9 at 1( 0) + 0 on 4327;
+  architecture extend of signex_9 at 17( 247) + 0 on 4328;
+file . "regfile.vhd" "20161030153137.000" "20161102164824.553":
+  entity registerfile at 1( 0) + 0 on 4323;
+  architecture formula of registerfile at 22( 615) + 0 on 4324;
+file . "nandgate.vhd" "20161030215643.000" "20161102164824.463":
+  entity nandgate at 1( 0) + 0 on 4319;
+  architecture formula of nandgate at 13( 212) + 0 on 4320;
+file . "LeftS_7.vhd" "20161020122906.000" "20161102164824.372":
+  entity lefts_7 at 1( 0) + 0 on 4313;
+  architecture formula of lefts_7 at 17( 246) + 0 on 4314;
+file . "decoder.vhd" "20161030204310.000" "20161102164824.216":
+  entity decoder at 1( 0) + 0 on 4307;
+  architecture formula of decoder at 13( 206) + 0 on 4308;
+file . "ALU.vhd" "20161030220336.000" "20161102164828.012":
+  entity alu at 1( 0) + 0 on 4343;
+  architecture formula of alu at 19( 337) + 0 on 4344;
+file . "components.vhd" "20161030213507.000" "20161102164823.959":
+  package components at 1( 0) + 0 on 4302;
+file . "comparator.vhd" "20161020151937.000" "20161102164828.110":
+  entity comparator at 1( 0) + 0 on 4345;
+  architecture formula of comparator at 11( 268) + 0 on 4346;
+file . "DataRegister.vhd" "20161030091001.000" "20161102164824.195":
+  entity dataregister at 1( 0) + 0 on 4305;
+  architecture behave of dataregister at 9( 258) + 0 on 4306;
+file . "FullA.vhd" "20161019154106.000" "20161102164824.351":
+  entity fulla at 1( 0) + 0 on 4311;
+  architecture formula of fulla at 11( 180) + 0 on 4312;
+file . "Memory.vhd" "20161020153700.000" "20161102164824.440":
+  entity memory at 1( 0) + 0 on 4317;
+  architecture formula of memory at 18( 455) + 0 on 4318;
+file . "PriorityEnc.vhd" "20161030091314.000" "20161102164824.509":
+  entity priorityenc at 1( 0) + 0 on 4321;
+  architecture formula of priorityenc at 12( 239) + 0 on 4322;
+file . "SignEx_6.vhd" "20161020122910.000" "20161102164824.673":
+  entity signex_6 at 1( 0) + 0 on 4325;
+  architecture extend of signex_6 at 17( 247) + 0 on 4326;
+file . "SixteenBitAdder.vhd" "20161020161929.000" "20161102164824.719":
+  entity sixteenbitadder at 1( 0) + 0 on 4329;
+  architecture formula of sixteenbitadder at 14( 249) + 0 on 4330;
+file . "datapath.vhd" "20161102111432.000" "20161102164823.985":
+  entity datapath at 1( 0) + 0 on 4303;
+  architecture formula of datapath at 16( 621) + 0 on 4304;
+file . "FSM.vhd" "20161031161410.000" "20161102164824.251":
+  entity fsm at 1( 0) + 0 on 4309;
+  architecture formula of fsm at 18( 581) + 0 on 4310;
+file . "Testbenchall.vhd" "20161101081420.000" "20161102164824.787":
+  entity testbench at 1( 0) + 0 on 4333;
+  architecture behave of testbench at 8( 109) + 0 on 4334;

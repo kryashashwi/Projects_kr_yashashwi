@@ -1,0 +1,82 @@
+library ieee;
+use ieee.std_logic_1164.all;
+library work;
+use work.components.all;
+
+entity TopLevel is
+   port(clk,reset: in std_logic;
+	rout_0,rout_1,rout_2,rout_3,rout_4,rout_5,rout_6,rout_7: out std_logic_vector(15 downto 0));
+end entity;
+
+architecture Behave of TopLevel is 
+
+	
+signal opcode_alu,A1_op,demux_op,T4_op,D3_op,alu_b_op: std_logic_vector(1 downto 0);
+signal	T2_op,A3_op:std_logic_vector(2 downto 0);
+signal	alu_a_op,T1_en, T2_en,T3_en, T4_en,T5_en,ir_en,T1_op,ze_en,carry_en,T3_op,A2_op,MemWrite,registerWrite, mem_add_op, mem_data_op,pe_flag,carry,zero : std_logic;
+signal	instruction:std_logic_vector(15 downto 0);
+begin
+Processor:FSM
+port map (
+	clk=>clk,
+	reset=>reset,
+	instruction=>instruction,
+	
+	--alu
+	alu_a_op=>alu_a_op,
+	alu_b_op=>alu_b_op,
+	opcode_alu=>opcode_alu,
+	demux_op=>demux_op,
+	--registers
+	T5_en=>T5_en,T4_en=>T4_en,T1_en=>T1_en,T2_en=>T2_en,T3_en=>T3_en,T1_op=>T1_op,T2_op=>T2_op,T3_op=>T3_op,T4_op=>T4_op,ze_en=>ze_en,carry_en=>carry_en,
+	--RF
+	A2_op=>A2_op,
+	A3_op=>A3_op,
+	D3_op=>D3_op , 
+	A1_op=>A1_op,
+	registerWrite=>registerWrite,
+	--R7_write=>R7_write,
+	--IR
+	ir_en=>ir_en,
+	--memory
+	MemWrite=>MemWrite,
+	mem_add_op=>mem_add_op,
+	mem_data_op=>mem_data_op,
+	
+	--input 
+	pe_flag=>pe_flag,carry=>carry,zero=>zero); -- pe_flag is 0 if the string is 0
+
+
+DataPath_Processor:datapath
+port map(
+	clk=>clk,
+	reset=>reset,
+	instruction=>instruction,
+	--alu
+	opcode_alu=>opcode_alu,
+	alu_a_op=>alu_a_op,
+	alu_b_op=>alu_b_op,
+	demux_op=>demux_op,
+	--registers
+	T5_en=>T5_en,T4_en=>T4_en,T1_en=>T1_en,T2_en=>T2_en,T3_en=>T3_en,T1_op=>T1_op,T2_op=>T2_op,T3_op=>T3_op,T4_op=>T4_op,ze_en=>ze_en,carry_en=>carry_en,
+	--RF
+	A2_op=>A2_op,
+	A3_op=>A3_op,
+	D3_op=>D3_op , 
+	A1_op=>A1_op,
+	registerWrite=>registerWrite,
+	
+	--IR
+	ir_en=>ir_en,
+	--memory
+	MemWrite=>MemWrite,
+	mem_add_op=>mem_add_op,
+	mem_data_op=>mem_data_op,
+
+	--output
+	pe_flag=>pe_flag,
+	
+	carry=>carry,zero=>zero,
+	rout_0=>rout_0,rout_1=>rout_1,rout_2=>rout_2,rout_3=>rout_3,rout_4=>rout_4,rout_5=>rout_5,rout_6=>rout_6,rout_7=>rout_7);
+
+end Behave;

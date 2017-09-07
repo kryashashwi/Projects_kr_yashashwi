@@ -1,0 +1,36 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+library work;
+use work.components.all;
+
+entity nandgate is
+port ( 
+   X , Y : in std_logic_vector(15 downto 0);
+   S : out std_logic_vector(15 downto 0));
+end entity;
+
+architecture Formula of nandgate is
+
+begin 
+
+S(0)<=not(X(0) and Y(0));
+S(1)<=not(X(1) and Y(1));
+S(2)<=not(X(2) and Y(2));
+S(3)<=not(X(3) and Y(3));
+S(4)<=not(X(4) and Y(4));
+S(5)<=not(X(5) and Y(5));
+S(6)<=not(X(6) and Y(6));
+S(7)<=not(X(7) and Y(7));
+S(8)<=not(X(8) and Y(8));
+S(9)<=not(X(9) and Y(9));
+S(10)<=not(X(10) and Y(10));
+S(11)<=not(X(11) and Y(11));
+S(12)<=not(X(12) and Y(12));
+S(13)<=not(X(13) and Y(13));
+S(14)<=not(X(14) and Y(14));
+S(15)<=not(X(15) and Y(15));
+end Formula;
+
+
+

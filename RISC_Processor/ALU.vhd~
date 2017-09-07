@@ -1,0 +1,53 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+library std;
+use std.textio.all;
+use std.standard.all;
+
+library work;
+use work.components.all;
+entity ALU is
+  port (
+   I1,I2: in std_logic_vector(15 downto 0);
+   op:in std_logic_vector(1 downto 0);
+  Ou: out std_logic_vector(15 downto 0);
+  zeroflag,carryflag:out std_logic);
+end entity;
+
+architecture Formula of ALU is
+signal A0,A1,A2: std_logic_vector(15 downto 0);
+signal A3,A4, eq: std_logic;
+begin
+
+Add:SixteenBitAdder port map(X=>I1,Y=>I2,S=>A0,carryflag=>A3);
+A4<=(not(A0(0))) and (not(A0(1))) and (not(A0(2))) and (not(A0(3))) and (not(A0(4))) and (not(A0(5))) and (not(A0(6))) and (not(A0(7))) and (not(A0(8))) and (not(A0(9))) and (not(A0(10))) and (not(A0(11))) and (not(A0(12))) and (not(A0(13))) and (not(A0(14))) and (not(A0(15)));
+
+nan:nandgate port map (X=>I1,Y=>I2,S=>A1);
+comp:comparator port map(X=>I1, Y=>I2, S=>A2);
+
+eq<=not(A2(0)) and not(A2(1)) and not(A2(2)) and not(A2(3)) and not(A2(4)) and not(A2(5)) and not(A2(6))  and not(A2(7)) and not(A2(8)) and not(A2(9)) and not(A2(10)) and not(A2(11)) and not(A2(12)) and not(A2(13)) and not(A2(14)) and not(A2(15));
+--op=00 ADD
+--op=01 nand
+--op=10 compare
+zeroflag<=A4 or eq;
+carryflag<=A3;
+Ou(0)<=(not(op(0))and not(op(1)) and A0(0)) or (not(op(0))and op(1) and A1(0)) or (op(0)and not(op(1)) and A2(0)); 
+Ou(1)<=(not(op(0))and not(op(1)) and A0(1)) or (not(op(0))and op(1) and A1(1)) or (op(0)and not(op(1)) and A2(1)); 
+Ou(2)<=(not(op(0))and not(op(1)) and A0(2)) or (not(op(0))and op(1) and A1(2)) or (op(0)and not(op(1)) and A2(2)); 
+Ou(3)<=(not(op(0))and not(op(1)) and A0(3)) or (not(op(0))and op(1) and A1(3)) or (op(0)and not(op(1)) and A2(3)); 
+Ou(4)<=(not(op(0))and not(op(1)) and A0(4)) or (not(op(0))and op(1) and A1(4)) or (op(0)and not(op(1)) and A2(4)); 
+Ou(5)<=(not(op(0))and not(op(1)) and A0(5)) or (not(op(0))and op(1) and A1(5)) or (op(0)and not(op(1)) and A2(5)); 
+Ou(6)<=(not(op(0))and not(op(1)) and A0(6)) or (not(op(0))and op(1) and A1(6)) or (op(0)and not(op(1)) and A2(6)); 
+Ou(7)<=(not(op(0))and not(op(1)) and A0(7)) or (not(op(0))and op(1) and A1(7)) or (op(0)and not(op(1)) and A2(7)); 
+Ou(8)<=(not(op(0))and not(op(1)) and A0(8)) or (not(op(0))and op(1) and A1(8)) or (op(0)and not(op(1)) and A2(8)); 
+Ou(9)<=(not(op(0))and not(op(1)) and A0(9)) or (not(op(0))and op(1) and A1(9)) or (op(0)and not(op(1)) and A2(9)); 
+Ou(10)<=(not(op(0))and not(op(1)) and A0(10)) or (not(op(0))and op(1) and A1(10)) or (op(0)and not(op(1)) and A2(10)); 
+Ou(11)<=(not(op(0))and not(op(1)) and A0(11)) or (not(op(0))and op(1) and A1(11)) or (op(0)and not(op(1)) and A2(11)); 
+Ou(12)<=(not(op(0))and not(op(1)) and A0(12)) or (not(op(0))and op(1) and A1(12)) or (op(0)and not(op(1)) and A2(12)); 
+Ou(13)<=(not(op(0))and not(op(1)) and A0(13)) or (not(op(0))and op(1) and A1(13)) or (op(0)and not(op(1)) and A2(13)); 
+Ou(14)<=(not(op(0))and not(op(1)) and A0(14)) or (not(op(0))and op(1) and A1(14)) or (op(0)and not(op(1)) and A2(14)); 
+Ou(15)<=(not(op(0))and not(op(1)) and A0(15)) or (not(op(0))and op(1) and A1(15)) or (op(0)and not(op(1)) and A2(15)); 
+
+end Formula;
